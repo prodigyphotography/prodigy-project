@@ -37,10 +37,49 @@ header {
 /* Gallery Layout - Responsive 5 Columns */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive columns */
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Increase minimum size to prevent crowding */
+    gap: 25px; /* Increase gap for more space between cards */
     padding: 20px;
     justify-items: center;
+}
+
+/* Photo Card Styling */
+.photo-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px; /* Increase padding for better spacing inside the card */
+    width: 100%;
+    max-width: 220px; /* Slightly increase max-width for better layout */
+    transition: transform 0.2s ease-in-out;
+}
+
+.photo-card:hover {
+    transform: scale(1.02);
+}
+
+/* Dropdown Container */
+.dropdown-container {
+    display: flex;
+    flex-direction: column; /* Stack dropdowns vertically */
+    gap: 10px; /* Add gap between dropdown menus to prevent overlapping */
+    margin-top: 10px; /* Add space between dropdowns and image */
+}
+
+/* Thumbnail Images */
+.thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 15px; /* Add margin below the thumbnail to prevent crowding with dropdowns */
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
 }
 
 /* Cart Popup Styling */
@@ -117,36 +156,6 @@ header {
 /* PayPal Button Container */
 #paypal-button-container {
     margin-top: 20px;
-}
-
-/* Photo Card Styling */
-.photo-card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    max-width: 200px;
-    transition: transform 0.2s ease-in-out;
-}
-
-.photo-card:hover {
-    transform: scale(1.02);
-}
-
-/* Thumbnail Images */
-.thumbnail {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.thumbnail:hover {
-    transform: scale(1.05);
 }
 
 /* Image Popup */
