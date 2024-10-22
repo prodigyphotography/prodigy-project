@@ -1,0 +1,198 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+}
+
+/* Cart Button */
+#cart-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 1002;
+}
+
+#cart-button:hover {
+    background-color: #555;
+}
+
+/* Cart Popup Styling */
+#cart {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 400px; /* Increase width to make room */
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1003;
+}
+
+/* Cart Visibility Toggle */
+#cart.visible {
+    display: block;
+}
+
+/* Cart Items Styling */
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; /* Stack the title and controls vertically */
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Cart Item Controls Styling */
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out elements in one line */
+    margin-top: 5px; /* Add space between title and controls */
+}
+
+/* Quantity Input Styling in Cart */
+.quantity-input {
+    width: 50px;
+    margin: 0 10px; /* Add space around the quantity input */
+}
+
+/* Item Total Price Styling */
+.item-total-price {
+    margin-left: 10px; /* Add space between the quantity input and total price */
+}
+
+/* Remove Item Button */
+.remove-item-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Add space between the total price and remove button */
+}
+
+.remove-item-button:hover {
+    background-color: #cc0000;
+}
+
+/* PayPal Button Container */
+#paypal-button-container {
+    margin-top: 20px;
+}
+
+/* Gallery Layout */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+/* Photo Card Styling */
+.photo-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.photo-card:hover {
+    transform: scale(1.02);
+}
+
+/* Thumbnail Images */
+.thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* Image Popup */
+.image-popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1003;
+}
+
+.image-popup.visible {
+    display: flex; /* Show popup */
+}
+
+.popup-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.popup-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    max-height: 100%;
+}
+
+.close-popup-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+.close-popup-button:hover {
+    background-color: darkred;
+}
