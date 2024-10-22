@@ -37,8 +37,8 @@ header {
 /* Gallery Layout - Responsive 5 Columns */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Increase minimum size to allow more space */
-    gap: 20px; /* Increase gap for better spacing between cards */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust to ensure enough space */
+    gap: 20px; /* Adjust gap for space between cards */
     padding: 20px;
     justify-items: center;
 }
@@ -49,13 +49,12 @@ header {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 15px;
-    width: 100%;
-    max-width: 300px; /* Increase max-width for better layout */
+    padding: 20px; /* Increased padding for better spacing inside the card */
+    max-width: 280px; /* Ensure cards do not grow too large */
     transition: transform 0.2s ease-in-out;
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    gap: 15px; /* Space between elements within the card */
+    flex-direction: column; /* Stack elements vertically */
+    gap: 10px; /* Space between elements */
     align-items: center;
 }
 
@@ -68,7 +67,7 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column; /* Stack dropdowns vertically */
-    gap: 10px; /* Add gap between dropdown menus to prevent overlapping */
+    gap: 10px; /* Add gap between dropdown menus */
     margin-top: 10px; /* Add space between dropdowns and image */
 }
 
@@ -92,8 +91,9 @@ header {
 .dropdown-menu,
 .quantity-input,
 button {
-    width: 100%; /* Make dropdowns and buttons fill the width of their container */
+    width: 90%; /* Make dropdowns and buttons fill most of the width of their container */
     max-width: 250px; /* Prevent them from becoming too wide */
+    margin: 0 auto; /* Center the dropdowns and buttons */
 }
 
 /* Cart Popup Styling */
@@ -238,7 +238,7 @@ button {
 
     /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ensure the gallery has appropriate space for mobile */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ensure gallery has enough space for mobile */
         gap: 15px; /* Reduce gap size for mobile */
         padding: 10px;
     }
@@ -279,7 +279,7 @@ button {
 
     /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Slightly smaller columns for tiny screens */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjust column size for very small screens */
         gap: 10px; /* Reduce gap size further for mobile */
     }
 
