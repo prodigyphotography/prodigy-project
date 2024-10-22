@@ -34,13 +34,23 @@ header {
     background-color: #555;
 }
 
+/* Gallery Layout - Responsive 5 Columns */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
 /* Cart Popup Styling */
 #cart {
     display: none;
     position: absolute;
     top: 60px;
-    right: 20px;
-    width: 400px; /* Increase width to make room */
+    right: 10px;
+    width: 90%;
+    max-width: 400px; /* Limit cart width */
     background-color: white;
     padding: 15px;
     border-radius: 8px;
@@ -107,15 +117,6 @@ header {
 /* PayPal Button Container */
 #paypal-button-container {
     margin-top: 20px;
-}
-
-/* Gallery Layout */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
 }
 
 /* Photo Card Styling */
@@ -195,4 +196,71 @@ header {
 
 .close-popup-button:hover {
     background-color: darkred;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Adjust Cart Button */
+    #cart-button {
+        right: 10px; /* Bring the cart button closer to the edge */
+        padding: 8px 12px; /* Make it slightly smaller for mobile */
+        font-size: 16px;
+    }
+
+    /* Adjust Cart Popup */
+    #cart {
+        width: 95%; /* Make cart almost full width on small screens */
+        right: 2.5%; /* Center the cart horizontally */
+    }
+
+    /* Adjust Gallery Layout */
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Smaller columns on mobile */
+        gap: 15px; /* Reduce gap size for mobile */
+        padding: 10px;
+    }
+
+    /* Cart Items */
+    .cart-item-controls {
+        flex-direction: column; /* Stack controls vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .quantity-input {
+        margin: 10px 0; /* Add margin above and below for better spacing on mobile */
+    }
+
+    .remove-item-button {
+        margin: 10px 0; /* Separate remove button for better spacing */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further Adjust Cart Button */
+    #cart-button {
+        font-size: 14px; /* Make text size smaller for smaller screens */
+    }
+
+    /* Adjust Header Font Size */
+    header {
+        padding: 15px;
+        font-size: 20px; /* Reduce font size for small screens */
+    }
+
+    /* Adjust Cart Width */
+    #cart {
+        width: 100%; /* Full width on very small screens */
+        left: 0;
+        right: 0; /* Center the cart */
+    }
+
+    /* Adjust Gallery Layout */
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Even smaller columns for tiny screens */
+        gap: 10px; /* Reduce gap size further for mobile */
+    }
+
+    .thumbnail {
+        height: 120px; /* Reduce image height for smaller screens */
+    }
 }
