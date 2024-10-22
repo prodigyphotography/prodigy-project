@@ -37,8 +37,8 @@ header {
 /* Gallery Layout - Responsive 5 Columns */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Increase minimum size to prevent crowding */
-    gap: 25px; /* Increase gap for more space between cards */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Increase minimum size to allow space for dropdowns */
+    gap: 30px; /* Increase gap for better spacing between cards */
     padding: 20px;
     justify-items: center;
 }
@@ -49,10 +49,14 @@ header {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 15px; /* Increase padding for better spacing inside the card */
+    padding: 15px;
     width: 100%;
-    max-width: 220px; /* Slightly increase max-width for better layout */
+    max-width: 300px; /* Increased max-width for better spacing */
     transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px; /* Space between elements within the card */
+    align-items: center;
 }
 
 .photo-card:hover {
@@ -61,6 +65,7 @@ header {
 
 /* Dropdown Container */
 .dropdown-container {
+    width: 100%;
     display: flex;
     flex-direction: column; /* Stack dropdowns vertically */
     gap: 10px; /* Add gap between dropdown menus to prevent overlapping */
@@ -70,7 +75,8 @@ header {
 /* Thumbnail Images */
 .thumbnail {
     width: 100%;
-    height: 150px;
+    height: auto;
+    max-height: 180px; /* Restrict the height of the thumbnail */
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
@@ -224,7 +230,7 @@ header {
 
     /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Smaller columns on mobile */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Ensure the gallery has appropriate space for mobile */
         gap: 15px; /* Reduce gap size for mobile */
         padding: 10px;
     }
@@ -265,7 +271,7 @@ header {
 
     /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Even smaller columns for tiny screens */
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Slightly smaller columns for tiny screens */
         gap: 10px; /* Reduce gap size further for mobile */
     }
 
