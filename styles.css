@@ -37,8 +37,8 @@ header {
 /* Gallery Layout - Responsive 5 Columns */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Increase minimum size to allow space for dropdowns */
-    gap: 30px; /* Increase gap for better spacing between cards */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Increase minimum size to allow more space */
+    gap: 20px; /* Increase gap for better spacing between cards */
     padding: 20px;
     justify-items: center;
 }
@@ -51,7 +51,7 @@ header {
     text-align: center;
     padding: 15px;
     width: 100%;
-    max-width: 300px; /* Increased max-width for better spacing */
+    max-width: 300px; /* Increase max-width for better layout */
     transition: transform 0.2s ease-in-out;
     display: flex;
     flex-direction: column; /* Stack items vertically */
@@ -88,10 +88,18 @@ header {
     transform: scale(1.05);
 }
 
+/* Dropdown Menus and Buttons */
+.dropdown-menu,
+.quantity-input,
+button {
+    width: 100%; /* Make dropdowns and buttons fill the width of their container */
+    max-width: 250px; /* Prevent them from becoming too wide */
+}
+
 /* Cart Popup Styling */
 #cart {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 60px;
     right: 10px;
     width: 90%;
@@ -230,7 +238,7 @@ header {
 
     /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Ensure the gallery has appropriate space for mobile */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ensure the gallery has appropriate space for mobile */
         gap: 15px; /* Reduce gap size for mobile */
         padding: 10px;
     }
@@ -271,7 +279,7 @@ header {
 
     /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Slightly smaller columns for tiny screens */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Slightly smaller columns for tiny screens */
         gap: 10px; /* Reduce gap size further for mobile */
     }
 
