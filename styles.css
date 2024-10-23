@@ -37,8 +37,8 @@ header {
 /* Gallery Layout - Responsive 5 Columns */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust to ensure enough space */
-    gap: 20px; /* Adjust gap for space between cards */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
     padding: 20px;
     justify-items: center;
 }
@@ -49,12 +49,12 @@ header {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 20px; /* Increased padding for better spacing inside the card */
-    max-width: 280px; /* Ensure cards do not grow too large */
+    padding: 20px;
+    max-width: 280px;
     transition: transform 0.2s ease-in-out;
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    gap: 10px; /* Space between elements */
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
 }
 
@@ -66,21 +66,21 @@ header {
 .dropdown-container {
     width: 100%;
     display: flex;
-    flex-direction: column; /* Stack dropdowns vertically */
-    gap: 10px; /* Add gap between dropdown menus */
-    margin-top: 10px; /* Add space between dropdowns and image */
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 /* Thumbnail Images */
 .thumbnail {
     width: 100%;
     height: auto;
-    max-height: 180px; /* Restrict the height of the thumbnail */
+    max-height: 180px;
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    margin-bottom: 15px; /* Add margin below the thumbnail to prevent crowding with dropdowns */
+    margin-bottom: 15px;
 }
 
 .thumbnail:hover {
@@ -91,9 +91,9 @@ header {
 .dropdown-menu,
 .quantity-input,
 button {
-    width: 90%; /* Make dropdowns and buttons fill most of the width of their container */
-    max-width: 250px; /* Prevent them from becoming too wide */
-    margin: 0 auto; /* Center the dropdowns and buttons */
+    width: 90%;
+    max-width: 250px;
+    margin: 0 auto;
 }
 
 /* Cart Popup Styling */
@@ -103,7 +103,7 @@ button {
     top: 60px;
     right: 10px;
     width: 90%;
-    max-width: 400px; /* Limit cart width */
+    max-width: 400px;
     background-color: white;
     padding: 15px;
     border-radius: 8px;
@@ -126,29 +126,34 @@ button {
 .cart-item {
     margin-bottom: 15px;
     display: flex;
-    flex-direction: column; /* Stack the title and controls vertically */
+    flex-direction: column; /* Stack title, controls, and price vertically */
     font-size: 16px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
+    gap: 10px; /* Add spacing between elements */
 }
 
 /* Cart Item Controls Styling */
 .cart-item-controls {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping if content is too wide */
     align-items: center;
-    justify-content: space-between; /* Space out elements in one line */
-    margin-top: 5px; /* Add space between title and controls */
+    justify-content: space-between;
+    gap: 10px; /* Add space between elements */
+    margin-top: 5px;
 }
 
-/* Quantity Input Styling in Cart */
+/* Quantity Input Styling */
 .quantity-input {
-    width: 50px;
-    margin: 0 10px; /* Add space around the quantity input */
+    width: 60px;
+    margin: 0 5px;
+    text-align: center;
 }
 
 /* Item Total Price Styling */
 .item-total-price {
-    margin-left: 10px; /* Add space between the quantity input and total price */
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 /* Remove Item Button */
@@ -156,11 +161,11 @@ button {
     background-color: #ff4d4d;
     color: white;
     border: none;
-    padding: 5px 8px;
+    padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-left: 10px; /* Add space between the total price and remove button */
+    margin-top: 10px;
 }
 
 .remove-item-button:hover {
@@ -174,7 +179,7 @@ button {
 
 /* Image Popup */
 .image-popup {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -187,7 +192,7 @@ button {
 }
 
 .image-popup.visible {
-    display: flex; /* Show popup */
+    display: flex;
 }
 
 .popup-content {
@@ -223,67 +228,59 @@ button {
 
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
-    /* Adjust Cart Button */
     #cart-button {
-        right: 10px; /* Bring the cart button closer to the edge */
-        padding: 8px 12px; /* Make it slightly smaller for mobile */
+        right: 10px;
+        padding: 8px 12px;
         font-size: 16px;
     }
 
-    /* Adjust Cart Popup */
     #cart {
-        width: 95%; /* Make cart almost full width on small screens */
-        right: 2.5%; /* Center the cart horizontally */
+        width: 95%;
+        right: 2.5%;
     }
 
-    /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ensure gallery has enough space for mobile */
-        gap: 15px; /* Reduce gap size for mobile */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
         padding: 10px;
     }
 
-    /* Cart Items */
     .cart-item-controls {
-        flex-direction: column; /* Stack controls vertically */
-        align-items: flex-start; /* Align items to the left */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .quantity-input {
-        margin: 10px 0; /* Add margin above and below for better spacing on mobile */
+        margin: 10px 0;
     }
 
     .remove-item-button {
-        margin: 10px 0; /* Separate remove button for better spacing */
+        margin: 10px 0;
     }
 }
 
 @media (max-width: 480px) {
-    /* Further Adjust Cart Button */
     #cart-button {
-        font-size: 14px; /* Make text size smaller for smaller screens */
+        font-size: 14px;
     }
 
-    /* Adjust Header Font Size */
     header {
         padding: 15px;
-        font-size: 20px; /* Reduce font size for small screens */
+        font-size: 20px;
     }
 
-    /* Adjust Cart Width */
     #cart {
-        width: 100%; /* Full width on very small screens */
+        width: 100%;
         left: 0;
-        right: 0; /* Center the cart */
+        right: 0;
     }
 
-    /* Adjust Gallery Layout */
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjust column size for very small screens */
-        gap: 10px; /* Reduce gap size further for mobile */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 10px;
     }
 
     .thumbnail {
-        height: 120px; /* Reduce image height for smaller screens */
+        height: 120px;
     }
 }
