@@ -3,8 +3,8 @@ const photos = [
     { title: "Roos Mob", thumb: "images/thumbs/roosmob-thumb.JPG", full: "images/roosmob.JPG" },
     { title: "Butterfly - Seaford Rise, SA", thumb: "images/thumbs/butterfly-thumb.jpg", full: "images/butterfly.jpg" },
     { title: "Water fall - Ingalla falls in Normanville, SA", thumb: "images/thumbs/waterfall-thumb.JPG", full: "images/waterfall.JPG" },
-    { title: "Rainbow", thumb: "images/thumbs/Rainbow-thumb.jpg", full: "images/rainbow.jpg" },
-    { title: "Ocean", thumb: "images/thumbs/ocean-thumb.jpg", full: "images/ocean.jpg" }
+    { title: "Rainbow" - Seaford Rise, thumb: "images/thumbs/Rainbow-thumb.jpg", full: "images/rainbow.jpg" },
+    { title: "Blossom", thumb: "images/thumbs/blossom-thumb.JPG", full: "images/blossom.JPG" }
 ];
 
 // Cart Data
