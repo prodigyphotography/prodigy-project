@@ -45,7 +45,7 @@ function generatePhotoCards() {
     attachDropdownListeners();
     attachThumbnailListeners();
     attachAddToCartListeners();
-    console.log("Photo cards generated and event listeners initialized."); // Debugging line
+    console.log("Photo cards generated and event listeners initialized.");
 }
 
 /* Attach Listeners to Type Dropdowns */
@@ -57,16 +57,18 @@ function attachDropdownListeners() {
             const quantityDropdown = card.querySelector('.quantity-dropdown');
 
             if (event.target.value === 'real') {
-                // Enable size and quantity for Real Copy
+                // Enable size and allow multiple quantities for Real Copy
                 sizeDropdown.disabled = false;
                 quantityDropdown.disabled = false;
-                sizeDropdown.value = ""; // Reset size selection
+                quantityDropdown.value = 1; // Reset to default
+                quantityDropdown.innerHTML = Array.from({ length: 20 }, (_, i) => 
+                    `<option value="${i + 1}">${i + 1}</option>`
+                ).join('');
             } else {
-                // Disable size and quantity for Digital Download
+                // Disable size and restrict quantity to 1 for Digital Download
                 sizeDropdown.disabled = true;
-                quantityDropdown.disabled = true;
-                sizeDropdown.value = ""; // Clear size selection
-                quantityDropdown.value = 1; // Default quantity to 1
+                quantityDropdown.disabled = false;
+                quantityDropdown.innerHTML = '<option value="1">1</option>';
             }
         });
     });
@@ -86,10 +88,8 @@ function openImagePopup(src) {
     popupImage.src = src;
     popup.classList.add('visible');
 
-    /* Disable right-click on the popup */
     popup.addEventListener('contextmenu', (event) => event.preventDefault());
 
-    /* Attach event listener to close button */
     const closeBtn = popup.querySelector('.close-popup-button');
     closeBtn.onclick = () => {
         popup.classList.remove('visible');
@@ -101,15 +101,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const cartButton = document.getElementById('cart-button');
     const cartElement = document.getElementById('cart');
 
-    if (!cartButton) {
-        console.error("Cart button element not found!");
-    } else {
-        console.log("Cart button found, attaching event listener.");
-        cartButton.addEventListener('click', () => {
-            console.log("Cart button clicked");
-            cartElement.classList.toggle('visible');
-        });
-    }
+    cartButton?.addEventListener('click', () => {
+        cartElement.classList.toggle('visible');
+    });
 });
 
 /* Add Items to Cart */
@@ -124,7 +118,7 @@ function attachAddToCartListeners() {
             let price = 0;
 
             if (type === 'digital') {
-                price = 15; // Digital Download is a fixed price
+                price = 15;
             } else if (type === 'real') {
                 if (size) {
                     price = getSizePrice(size) * quantity;
@@ -164,42 +158,16 @@ function updateCart() {
     const cartItems = document.getElementById('cart-items');
     cartItems.innerHTML = cart.map((item, index) => `
         <li class="cart-item">
-            <span class="cart-item-title">${item.title} (${item.type}${item.type === 'real' ? `, Size: ${item.size}` : ''})</span>
-            <div class="cart-item-controls">
-                <span class="cart-item-price">Unit Price: $${(item.price / item.quantity).toFixed(2)}</span>
-                <input type="number" class="quantity-input" data-index="${index}" min="1" max="${item.type === 'digital' ? 1 : 20}" value="${item.quantity}">
-                <span class="item-total-price">= $${item.price.toFixed(2)}</span>
+            <span>${item.title} (${item.type}${item.type === 'real' ? `, Size: ${item.size}` : ''})</span>
+            <div>
+                <span>Price: $${item.price.toFixed(2)}</span>
                 <button class="remove-item-button" data-index="${index}">Remove</button>
             </div>
         </li>
     `).join('');
+
     attachRemoveListeners();
-    attachQuantityChangeListeners();
     renderPayPalButton();
-}
-
-/* Attach Change Listeners to Quantity Input Fields */
-function attachQuantityChangeListeners() {
-    document.querySelectorAll('.quantity-input').forEach(input => {
-        input.addEventListener('change', (event) => {
-            const index = event.target.dataset.index;
-            const newQuantity = parseInt(event.target.value);
-            if (newQuantity <= 0) return;
-
-            const item = cart[index];
-            const pricePerUnit = item.price / item.quantity;
-            item.quantity = newQuantity;
-            item.price = pricePerUnit * newQuantity;
-            total = cart.reduce((sum, item) => sum + item.price, 0);
-            updateCart();
-            updateCartCount();
-        });
-    });
-}
-
-/* Update Cart Count */
-function updateCartCount() {
-    document.getElementById('cart-count').textContent = cart.length;
 }
 
 /* Attach Remove Listeners */
@@ -224,25 +192,17 @@ function removeFromCart(index) {
 function renderPayPalButton() {
     const paypalContainer = document.getElementById('paypal-button-container');
     paypalContainer.innerHTML = '';
+
     if (cart.length === 0) return;
 
-    if (typeof paypal === 'undefined') {
-        console.error("PayPal SDK not loaded.");
-        return;
-    }
-
-    paypal.Buttons({
-        createOrder: (data, actions) => {
-            return actions.order.create({
-                purchase_units: [{ amount: { value: total.toFixed(2) } }]
-            });
-        },
-        onApprove: (data, actions) => {
-            return actions.order.capture().then(() => {
-                alert('Transaction successful!');
-                clearCart();
-            });
-        }
+    paypal?.Buttons({
+        createOrder: (data, actions) => actions.order.create({
+            purchase_units: [{ amount: { value: total.toFixed(2) } }]
+        }),
+        onApprove: (data, actions) => actions.order.capture().then(() => {
+            alert('Transaction successful!');
+            clearCart();
+        })
     }).render('#paypal-button-container');
 }
 
@@ -252,6 +212,11 @@ function clearCart() {
     total = 0;
     updateCart();
     updateCartCount();
+}
+
+/* Update Cart Count */
+function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.length;
 }
 
 /* Initialize Page */
