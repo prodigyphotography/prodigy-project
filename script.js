@@ -57,14 +57,16 @@ function attachDropdownListeners() {
             const quantityDropdown = card.querySelector('.quantity-dropdown');
 
             if (event.target.value === 'real') {
-                sizeDropdown.disabled = false; // Enable size dropdown for Real Copy
-                sizeDropdown.value = ""; // Set default value for the dropdown
-                quantityDropdown.disabled = false; // Enable quantity selection
+                // Enable size and quantity for Real Copy
+                sizeDropdown.disabled = false;
+                quantityDropdown.disabled = false;
+                sizeDropdown.value = ""; // Reset size selection
             } else {
-                sizeDropdown.disabled = true; // Disable size dropdown for Digital Download
-                sizeDropdown.value = ""; // Clear the selection when disabled
-                quantityDropdown.value = 1; // Default quantity to 1 for digital
-                quantityDropdown.disabled = true; // Disable quantity selection for digital
+                // Disable size and quantity for Digital Download
+                sizeDropdown.disabled = true;
+                quantityDropdown.disabled = true;
+                sizeDropdown.value = ""; // Clear size selection
+                quantityDropdown.value = 1; // Default quantity to 1
             }
         });
     });
