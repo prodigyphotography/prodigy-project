@@ -1,8 +1,8 @@
 // Photo Data
 const photos = [
     { title: "Roos Mob", thumb: "images/thumbs/roosmob-thumb.JPG", full: "images/roosmob.JPG" },
-    { title: "Butterfly", thumb: "images/thumbs/butterfly-thumb.jpg", full: "images/butterfly.jpg" },
-    { title: "Waterfall", thumb: "images/thumbs/waterfall-thumb.jpg", full: "images/waterfall.jpg" },
+    { title: "Butterfly - Seaford Rise, SA", thumb: "images/thumbs/butterfly-thumb.jpg", full: "images/butterfly.jpg" },
+    { title: "Water fall - Ingalla falls in Normanville, SA", thumb: "images/thumbs/waterfall-thumb.jpg", full: "images/waterfall.jpg" },
     { title: "Rainbow", thumb: "images/thumbs/Rainbow-thumb.jpg", full: "images/rainbow.jpg" },
     { title: "Ocean", thumb: "images/thumbs/ocean-thumb.jpg", full: "images/ocean.jpg" }
 ];
