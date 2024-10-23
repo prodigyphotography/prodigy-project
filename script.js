@@ -42,7 +42,7 @@ function generatePhotoCards() {
         </div>
     `).join('');
 
-    attachDropdownListeners(); // Attach listeners to type dropdowns to enable/disable size dropdown
+    attachDropdownListeners();
     attachThumbnailListeners();
     attachAddToCartListeners();
     console.log("Photo cards generated and event listeners initialized."); // Debugging line
@@ -106,11 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.log("Cart button found, attaching event listener.");
         cartButton.addEventListener('click', () => {
-            console.log("Cart button clicked"); // Debugging line to confirm click event
-
-            // Toggle the 'visible' class to show/hide the cart
+            console.log("Cart button clicked");
             cartElement.classList.toggle('visible');
-            console.log("Cart visibility toggled."); // Confirm cart visibility is being toggled
         });
     }
 });
@@ -126,21 +123,20 @@ function attachAddToCartListeners() {
             const size = card.querySelector('.size-dropdown').value;
             let price = 0;
 
-            // Calculate price based on type
             if (type === 'digital') {
                 price = 15; // Digital Download is a fixed price
             } else if (type === 'real') {
                 if (size) {
-                    price = getSizePrice(size) * quantity; // Calculate price based on size and quantity
+                    price = getSizePrice(size) * quantity;
                 } else {
                     alert("Please select a size for the Real Copy.");
-                    return; // Prevent adding to cart without a size
+                    return;
                 }
             }
 
             if (type === 'digital' && cart.some(item => item.title === title && item.type === 'digital')) {
                 alert(`"${title}" is already in the cart as a digital copy.`);
-                return; // Prevent duplicate digital downloads
+                return;
             }
 
             cart.push({ title, type, size, quantity, price });
@@ -177,9 +173,8 @@ function updateCart() {
             </div>
         </li>
     `).join('');
-
     attachRemoveListeners();
-    attachQuantityChangeListeners(); // Attach listeners to quantity input fields
+    attachQuantityChangeListeners();
     renderPayPalButton();
 }
 
@@ -189,18 +184,13 @@ function attachQuantityChangeListeners() {
         input.addEventListener('change', (event) => {
             const index = event.target.dataset.index;
             const newQuantity = parseInt(event.target.value);
-            if (newQuantity <= 0) return; // Prevent invalid quantities
+            if (newQuantity <= 0) return;
 
-            // Update the item's quantity and price in the cart
             const item = cart[index];
-            const pricePerUnit = item.price / item.quantity; // Calculate unit price based on current price and quantity
+            const pricePerUnit = item.price / item.quantity;
             item.quantity = newQuantity;
             item.price = pricePerUnit * newQuantity;
-
-            // Update the total price of all items
             total = cart.reduce((sum, item) => sum + item.price, 0);
-
-            // Update the cart display with new values
             updateCart();
             updateCartCount();
         });
@@ -211,15 +201,6 @@ function attachQuantityChangeListeners() {
 function updateCartCount() {
     document.getElementById('cart-count').textContent = cart.length;
 }
-
-/* Remove Item from Cart */
-function removeFromCart(index) {
-    const item = cart.splice(index, 1)[0];
-    total -= item.price;
-    updateCart();
-    updateCartCount();
-}
-
 
 /* Attach Remove Listeners */
 function attachRemoveListeners() {
@@ -242,23 +223,18 @@ function removeFromCart(index) {
 /* Render PayPal Button */
 function renderPayPalButton() {
     const paypalContainer = document.getElementById('paypal-button-container');
-    paypalContainer.innerHTML = ''; // Clear previous buttons
-
-    if (cart.length === 0) return; // Do not render PayPal button if cart is empty
+    paypalContainer.innerHTML = '';
+    if (cart.length === 0) return;
 
     if (typeof paypal === 'undefined') {
-        console.error("PayPal SDK not loaded. PayPal buttons will not be rendered.");
-        return; // If PayPal SDK didn't load, do not attempt to render the buttons
+        console.error("PayPal SDK not loaded.");
+        return;
     }
 
     paypal.Buttons({
         createOrder: (data, actions) => {
             return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: total.toFixed(2)
-                    }
-                }]
+                purchase_units: [{ amount: { value: total.toFixed(2) } }]
             });
         },
         onApprove: (data, actions) => {
