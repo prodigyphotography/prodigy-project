@@ -1,6 +1,6 @@
 // Photo Data
 const photos = [
-    { title: "Sunset", thumb: "images/thumbs/RoosMob-thumb.jpg", full: "images/RoosMob-thumb.jpg" },
+    { title: "Roos Mob", thumb: "images/thumbs/RoosMob-thumb.jpg", full: "images/RoosMob.jpg" },
     { title: "Mountain", thumb: "images/thumbs/housedarren-thumb.jpg", full: "images/housedarren.jpg" },
     { title: "Waterfall", thumb: "images/thumbs/waterfall-thumb.jpg", full: "images/waterfall.jpg" },
     { title: "Forest", thumb: "images/thumbs/forest-thumb.jpg", full: "images/forest.jpg" },
