@@ -1,7 +1,7 @@
 // Photo Data
 const photos = [
     { title: "Roos Mob", thumb: "images/thumbs/roosmob-thumb.JPG", full: "images/roosmob.JPG" },
-    { title: "Mountain", Butterfly: "images/thumbs/butterfly-thumb.jpg", full: "images/butterfly.jpg" },
+    { title: "Butterfly", Butterfly: "images/thumbs/butterfly-thumb.jpg", full: "images/butterfly.jpg" },
     { title: "Waterfall", thumb: "images/thumbs/waterfall-thumb.jpg", full: "images/waterfall.jpg" },
     { title: "Forest", thumb: "images/thumbs/forest-thumb.jpg", full: "images/forest.jpg" },
     { title: "Ocean", thumb: "images/thumbs/ocean-thumb.jpg", full: "images/ocean.jpg" }
