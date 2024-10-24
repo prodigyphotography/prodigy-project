@@ -1,10 +1,9 @@
 /* General Styles */
-body, html {
+body {
     margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrollbars */
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    overflow-x: hidden;
 }
 
 /* Header Styling */
@@ -14,24 +13,43 @@ header {
     color: white;
     padding: 20px;
     font-size: 24px;
-    position: relative;
-    margin: 0; /* Remove margin if there's any */
+    position: relative; /* Ensure header doesn't affect fixed elements like the cart button */
+}
+/* Header Buttons (Gallery and Contact) */
+.header-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.header-button {
+    background-color: #444;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.header-button:hover {
+    background-color: #666;
 }
 
 /* Cart Button */
 #cart-button {
     position: fixed;
-    top: 0; /* Align with the very top of the screen */
-    right: 0; /* Align with the very right of the screen */
+    top: 0;
+    right: 0;
     background-color: #333;
     color: white;
     border: none;
-    padding: 10px; /* Reduce padding slightly for fit */
-    border-radius: 0; /* Remove rounded corners */
+    padding: 5px 10px; /* Reduced padding to keep it close to the edge */
+    border-radius: 0; /* Remove rounded edges for a cleaner corner fit */
     cursor: pointer;
     transition: background-color 0.3s;
-    z-index: 1004; /* Ensure it stays above all other elements */
-    margin: 0; /* Remove default margin */
+    z-index: 1003; /* Ensure it stays above other elements */
+    margin: 0; /* Remove any default margins */
 }
 
 #cart-button:hover {
@@ -96,7 +114,7 @@ header {
     #cart-button {
         top: 0;
         right: 0;
-        padding: 8px; /* Reduce padding for smaller devices */
+        padding: 4px 8px; /* Reduce padding for smaller devices */
         font-size: 14px;
     }
 }
@@ -105,7 +123,7 @@ header {
     #cart-button {
         top: 0;
         right: 0;
-        padding: 6px; /* Further reduce padding for very small devices */
+        padding: 3px 6px; /* Further reduce padding for very small devices */
         font-size: 12px;
     }
 }
