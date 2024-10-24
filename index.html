@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery with Cart</title>
+    <title>About Me - Prodigy Photography</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Prodigy Photography</h1>
+        <div class="header-buttons">
+            <a href="gallery.html" class="header-button">Gallery</a>
+            <a href="contact.html" class="header-button">Contact</a>
+        </div>
         <button id="cart-button">Cart (<span id="cart-count">0</span>)</button>
     </header>
 
-    <section class="gallery" id="gallery"></section>
+    <section class="about-container">
+        <h2>Welcome to Prodigy Photography!</h2>
+        <p>Hi there! My name is [Your Name], and I'm a passionate photographer based in [Location]. I specialize in [type of photography, e.g., landscape, wildlife, etc.], capturing beautiful moments and sharing them with the world.</p>
+        <p>Photography is more than just a profession for me; it’s a way to connect with nature, people, and experiences in a meaningful way. I believe that every picture tells a story, and I'm here to share mine with you.</p>
+        <p>Feel free to explore the gallery and reach out if you'd like to collaborate, purchase prints, or just say hello. Thank you for visiting my website!</p>
+    </section>
 
-    <div id="cart" class="cart">
-        <h2>Your Cart</h2>
-        <ul id="cart-items"></ul>
-        <div id="paypal-button-container"></div>
-    </div>
-
-    <!-- Image Popup -->
-    <div id="image-popup" class="image-popup">
-        <div class="popup-content">
-            <img src="" alt="Popup Image" id="popup-image">
-            <button class="close-popup-button">&times;</button>
-        </div>
-    </div>
-<div id="paypal-button-container"></div>
-    <script src="script.js"></script>
-    <!-- Load PayPal SDK AFTER your script.js -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AcRjp8PG8KLQ3WoQuk07s5aKBypyNX9snb3W5dGlBbtGpM5taKsQrYgw2J9t8vK1IN1kyXA37qBSEhnR"></script>
+    <footer>
+        <p>&copy; 2024 Prodigy Photography. All rights reserved.</p>
+    </footer>
 </body>
 </html>
