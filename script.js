@@ -5,7 +5,6 @@ const photos = [
     { title: "Waterfall - Ingalalla Falls in Normanville, SA", thumb: "images/thumbs/waterfall-thumb.JPG", full: "images/waterfall.JPG" },
     { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/Rainbow-thumb.jpg", full: "images/rainbow.JPG" },
     { title: "Historic Church - Old Noarlunga, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" }
-    // Add other photos as needed
 ];
 
 // Cart Data
@@ -148,7 +147,7 @@ function attachAddToCartListeners() {
                 if (size) {
                     price = getSizePrice(size) * quantity; // Calculate price based on size and quantity
                 } else {
-                    alert("Please select a size for the Real Copy.");
+                    alert(`Please select a size for the Real Copy.`);
                     return; // Prevent adding to cart without a size
                 }
             }
