@@ -109,6 +109,8 @@ button {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1003;
+    max-height: 80vh; /* Limit height to make space for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
 }
 
 /* Cart Visibility Toggle */
