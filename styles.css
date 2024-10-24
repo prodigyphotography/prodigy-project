@@ -19,16 +19,17 @@ header {
 /* Cart Button */
 #cart-button {
     position: fixed;
-    top: 10px; /* Keep close to the top edge */
-    right: 10px; /* Keep close to the right edge */
+    top: 0;
+    right: 0;
     background-color: #333;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 5px 10px; /* Reduced padding to keep it close to the edge */
+    border-radius: 0; /* Remove rounded edges for a cleaner corner fit */
     cursor: pointer;
     transition: background-color 0.3s;
-    z-index: 1003; /* Higher z-index to keep it above other elements */
+    z-index: 1003; /* Ensure it stays above other elements */
+    margin: 0; /* Remove any default margins */
 }
 
 #cart-button:hover {
@@ -91,18 +92,18 @@ header {
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
     #cart-button {
-        top: 10px;
-        right: 10px;
-        padding: 8px 12px;
+        top: 0;
+        right: 0;
+        padding: 4px 8px; /* Reduce padding for smaller devices */
         font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
     #cart-button {
-        top: 5px;
-        right: 5px;
-        padding: 6px 10px;
+        top: 0;
+        right: 0;
+        padding: 3px 6px; /* Further reduce padding for very small devices */
         font-size: 12px;
     }
 }
