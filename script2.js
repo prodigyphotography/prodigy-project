@@ -4,13 +4,13 @@ const photos = [
     { title: "Butterfly - Seaford Rise, SA", thumb: "images/thumbs/butterfly-thumb.jpg", full: "images/butterfly.jpg" },
     { title: "Waterfall - Ingalalla Falls in Normanville, SA", thumb: "images/thumbs/waterfall-thumb.JPG", full: "images/waterfall.JPG" },
     { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/Rainbow-thumb.jpg", full: "images/rainbow.JPG" },
-    { title: "Historic Church - Old Noarlunga, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" }
+    { title: "Historic Church - Old Noarlunga, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga.JPG" }
 ];
 
 // Cart Data
 let cart = [];
 let total = 0;
-let selectedDigitalCard = null; // Track which card has a digital selection
+let selectedDigitalTitle = null; // Track if any digital image has been selected
 
 /* Disable right-click on the entire page */
 document.addEventListener('contextmenu', (event) => event.preventDefault());
@@ -24,7 +24,7 @@ function generatePhotoCards() {
             <p>${photo.title}</p>
             <div class="dropdown-container">
                 <select class="type-dropdown">
-                    <option value="digital" selected>Digital Download - $15</option>
+                    <option value="digital">Digital Download - $15</option>
                     <option value="real">Real Copy</option>
                 </select>
                 <select class="quantity-dropdown">
@@ -55,6 +55,7 @@ function attachDropdownListeners() {
             const card = event.target.closest('.photo-card');
             const sizeDropdown = card.querySelector('.size-dropdown');
             const quantityDropdown = card.querySelector('.quantity-dropdown');
+            const title = card.dataset.title;
 
             if (event.target.value === 'real') {
                 // Enable size and quantity for Real Copy
@@ -63,14 +64,13 @@ function attachDropdownListeners() {
                 sizeDropdown.value = "";
 
                 // Clear digital selection if this was the selected card
-                if (selectedDigitalCard === card) {
-                    selectedDigitalCard = null;
-                    toggleOtherDropdowns(false);
+                if (selectedDigitalTitle === title) {
+                    selectedDigitalTitle = null;
                 }
             } else {
                 // Prevent multiple digital selections
-                if (selectedDigitalCard && selectedDigitalCard !== card) {
-                    alert("Only one digital download can be selected at a time.");
+                if (selectedDigitalTitle && selectedDigitalTitle !== title) {
+                    alert("Only one digital download can be selected from the entire gallery.");
                     event.target.value = 'real';
                     return;
                 }
@@ -81,21 +81,10 @@ function attachDropdownListeners() {
                 sizeDropdown.value = "";
                 quantityDropdown.value = 1;
 
-                // Track the selected digital card and disable other dropdowns
-                selectedDigitalCard = card;
-                toggleOtherDropdowns(true);
+                // Track the selected digital title
+                selectedDigitalTitle = title;
             }
         });
-    });
-}
-
-/* Enable/Disable All Other Dropdowns */
-function toggleOtherDropdowns(disable) {
-    document.querySelectorAll('.photo-card').forEach(card => {
-        if (card !== selectedDigitalCard) {
-            const dropdown = card.querySelector('.type-dropdown');
-            dropdown.disabled = disable;
-        }
     });
 }
 
@@ -133,6 +122,10 @@ function attachAddToCartListeners() {
             let price = 0;
 
             if (type === 'digital') {
+                if (cart.some(item => item.title === title && item.type === 'digital')) {
+                    alert(`"${title}" is already in the cart as a digital copy.`);
+                    return;
+                }
                 price = 15;
             } else if (type === 'real') {
                 if (size) {
@@ -141,11 +134,6 @@ function attachAddToCartListeners() {
                     alert("Please select a size for the Real Copy.");
                     return;
                 }
-            }
-
-            if (type === 'digital' && cart.some(item => item.title === title && item.type === 'digital')) {
-                alert(`"${title}" is already in the cart as a digital copy.`);
-                return;
             }
 
             cart.push({ title, type, size, quantity, price });
@@ -185,9 +173,27 @@ function updateCart() {
 
     attachRemoveListeners();
     attachQuantityChangeListeners();
+    renderPayPalButton(); // Render PayPal button
 }
 
-/* Attach Change Listeners to Quantity Inputs */
+/* Render PayPal Button */
+function renderPayPalButton() {
+    const paypalContainer = document.getElementById('paypal-button-container');
+    paypalContainer.innerHTML = ''; // Clear existing button
+
+    paypal.Buttons({
+        createOrder: function () {
+            return new Promise(resolve => {
+                resolve('ORDER-ID');
+            });
+        },
+        onApprove: function () {
+            alert('Payment Successful!');
+        }
+    }).render(paypalContainer);
+}
+
+/* Attach Quantity Change Listeners */
 function attachQuantityChangeListeners() {
     document.querySelectorAll('.quantity-input').forEach(input => {
         input.addEventListener('change', (event) => {
@@ -226,6 +232,7 @@ function attachRemoveListeners() {
 function removeFromCart(index) {
     const item = cart.splice(index, 1)[0];
     total -= item.price;
+    if (item.type === 'digital') selectedDigitalTitle = null;
     updateCart();
     updateCartCount();
 }
