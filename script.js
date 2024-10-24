@@ -4,17 +4,8 @@ const photos = [
     { title: "Butterfly - Seaford Rise, SA", thumb: "images/thumbs/butterfly-thumb.jpg", full: "images/butterfly.jpg" },
     { title: "Waterfall - Ingalalla Falls in Normanville, SA", thumb: "images/thumbs/waterfall-thumb.JPG", full: "images/waterfall.JPG" },
     { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/Rainbow-thumb.jpg", full: "images/rainbow.JPG" },
-    { title: "Historic Church - Old Noarlunga, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
-    { title: "Rainbow - Seaford Rise, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" },
+    { title: "Historic Church - Old Noarlunga, SA", thumb: "images/thumbs/HistoricChurchNoarlunga-thumb.JPG", full: "images/HistoricChurchNoarlunga-thumb.JPG" }
+    // Add other photos as needed
 ];
 
 // Cart Data
@@ -36,7 +27,7 @@ function generatePhotoCards() {
                     <option value="digital" selected>Digital Download - $15</option>
                     <option value="real">Real Copy</option>
                 </select>
-                <select class="quantity-dropdown">
+                <select class="quantity-dropdown" disabled>
                     ${Array.from({ length: 20 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('')}
                 </select>
                 <select class="size-dropdown" disabled>
@@ -61,11 +52,18 @@ function generatePhotoCards() {
 /* Attach Listeners to Type Dropdowns */
 function attachDropdownListeners() {
     document.querySelectorAll('.type-dropdown').forEach(dropdown => {
-        dropdown.addEventListener('change', (event) => {
-            const card = event.target.closest('.photo-card');
-            const sizeDropdown = card.querySelector('.size-dropdown');
-            const quantityDropdown = card.querySelector('.quantity-dropdown');
+        const card = dropdown.closest('.photo-card');
+        const sizeDropdown = card.querySelector('.size-dropdown');
+        const quantityDropdown = card.querySelector('.quantity-dropdown');
 
+        // Set initial state based on default value
+        if (dropdown.value === 'digital') {
+            sizeDropdown.disabled = true;
+            quantityDropdown.disabled = true;
+        }
+
+        // Add event listener for changes
+        dropdown.addEventListener('change', (event) => {
             if (event.target.value === 'real') {
                 // Enable size and quantity for Real Copy
                 sizeDropdown.disabled = false;
@@ -230,7 +228,6 @@ function removeFromCart(index) {
     updateCartCount();
 }
 
-
 /* Attach Remove Listeners */
 function attachRemoveListeners() {
     document.querySelectorAll('.remove-item-button').forEach(button => {
@@ -239,14 +236,6 @@ function attachRemoveListeners() {
             removeFromCart(index);
         });
     });
-}
-
-/* Remove Item from Cart */
-function removeFromCart(index) {
-    const item = cart.splice(index, 1)[0];
-    total -= item.price;
-    updateCart();
-    updateCartCount();
 }
 
 /* Render PayPal Button */
