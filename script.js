@@ -117,8 +117,15 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Cart button clicked"); // Debugging line to confirm click event
 
             // Toggle the 'visible' class to show/hide the cart
-            cartElement.classList.toggle('visible');
+            const isCartVisible = cartElement.classList.toggle('visible');
             console.log("Cart visibility toggled."); // Confirm cart visibility is being toggled
+
+            // Enable or disable body scrolling based on cart visibility
+            if (isCartVisible) {
+                document.body.style.overflow = 'hidden'; // Disable scrolling on the page
+            } else {
+                document.body.style.overflow = 'auto'; // Re-enable scrolling on the page
+            }
         });
     }
 });
