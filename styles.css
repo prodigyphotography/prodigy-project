@@ -74,8 +74,9 @@ header {
 /* Thumbnail Images */
 .thumbnail {
     width: 100%;
-    height: 150px; /* Fixed height for uniform size */
-    object-fit: contain; /* Ensure the entire photo is visible */
+    height: auto; /* Allow the height to adjust automatically */
+    max-height: 180px; /* Maximum height to keep thumbnails from getting too large */
+    object-fit: contain; /* Ensure the entire photo is visible without cropping */
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
@@ -84,6 +85,19 @@ header {
 
 .thumbnail:hover {
     transform: scale(1.05);
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .thumbnail {
+        max-height: 140px; /* Reduce the max-height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .thumbnail {
+        max-height: 120px; /* Further reduce max-height for very small screens */
+    }
 }
 
 /* Dropdown Menus and Buttons */
