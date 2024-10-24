@@ -1,9 +1,10 @@
 /* General Styles */
-body {
+body, html {
     margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    overflow-x: hidden;
 }
 
 /* Header Styling */
@@ -13,23 +14,24 @@ header {
     color: white;
     padding: 20px;
     font-size: 24px;
-    position: relative; /* Ensure header doesn't affect fixed elements like the cart button */
+    position: relative;
+    margin: 0; /* Remove margin if there's any */
 }
 
 /* Cart Button */
 #cart-button {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 0; /* Align with the very top of the screen */
+    right: 0; /* Align with the very right of the screen */
     background-color: #333;
     color: white;
     border: none;
-    padding: 5px 10px; /* Reduced padding to keep it close to the edge */
-    border-radius: 0; /* Remove rounded edges for a cleaner corner fit */
+    padding: 10px; /* Reduce padding slightly for fit */
+    border-radius: 0; /* Remove rounded corners */
     cursor: pointer;
     transition: background-color 0.3s;
-    z-index: 1003; /* Ensure it stays above other elements */
-    margin: 0; /* Remove any default margins */
+    z-index: 1004; /* Ensure it stays above all other elements */
+    margin: 0; /* Remove default margin */
 }
 
 #cart-button:hover {
@@ -94,7 +96,7 @@ header {
     #cart-button {
         top: 0;
         right: 0;
-        padding: 4px 8px; /* Reduce padding for smaller devices */
+        padding: 8px; /* Reduce padding for smaller devices */
         font-size: 14px;
     }
 }
@@ -103,7 +105,7 @@ header {
     #cart-button {
         top: 0;
         right: 0;
-        padding: 3px 6px; /* Further reduce padding for very small devices */
+        padding: 6px; /* Further reduce padding for very small devices */
         font-size: 12px;
     }
 }
