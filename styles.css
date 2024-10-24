@@ -13,13 +13,14 @@ header {
     color: white;
     padding: 20px;
     font-size: 24px;
+    position: relative; /* Ensure header doesn't affect fixed elements like the cart button */
 }
 
 /* Cart Button */
 #cart-button {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px; /* Keep close to the top edge */
+    right: 10px; /* Keep close to the right edge */
     background-color: #333;
     color: white;
     border: none;
@@ -27,7 +28,7 @@ header {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    z-index: 1002; /* Ensure the cart button is always above other elements */
+    z-index: 1003; /* Higher z-index to keep it above other elements */
 }
 
 #cart-button:hover {
@@ -90,19 +91,19 @@ header {
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
     #cart-button {
-        top: 10px; /* Adjust the top padding to bring the button closer to the top on smaller screens */
-        right: 10px; /* Bring the cart button closer to the right edge */
-        padding: 8px 12px; /* Reduce padding for better fit on smaller devices */
-        font-size: 14px; /* Decrease font size for a more balanced look */
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
     #cart-button {
-        top: 5px; /* Further adjust top padding for very small screens */
-        right: 5px; /* Bring the cart button even closer to the edge */
-        padding: 6px 10px; /* Reduce padding further for very small devices */
-        font-size: 12px; /* Reduce font size to make sure the button fits */
+        top: 5px;
+        right: 5px;
+        padding: 6px 10px;
+        font-size: 12px;
     }
 }
 
