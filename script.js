@@ -19,7 +19,9 @@ function generatePhotoCards() {
     const gallery = document.getElementById('gallery');
     gallery.innerHTML = photos.map(photo => `
         <div class="photo-card" data-title="${photo.title}">
-            <img src="${photo.thumb}" alt="${photo.title}" class="thumbnail">
+            <div class="image-overlay">
+                <img src="${photo.thumb}" alt="${photo.title}" class="thumbnail">
+            </div>
             <p>${photo.title}</p>
             <div class="dropdown-container">
                 <select class="type-dropdown">
@@ -81,7 +83,7 @@ function attachDropdownListeners() {
 
 /* Attach Click Listeners to Thumbnails */
 function attachThumbnailListeners() {
-    document.querySelectorAll('.thumbnail').forEach((img, index) => {
+    document.querySelectorAll('.image-overlay img.thumbnail').forEach((img, index) => {
         img.addEventListener('click', () => openImagePopup(photos[index].full));
     });
 }
@@ -90,7 +92,60 @@ function attachThumbnailListeners() {
 function openImagePopup(src) {
     const popup = document.getElementById('image-popup');
     const popupImage = document.getElementById('popup-image');
+
+    // Load the full-size image
     popupImage.src = src;
+
+    // Add watermark text
+    const watermark = document.createElement('div');
+    watermark.id = "watermark";
+    watermark.classList.add('watermark');
+    watermark.textContent = 'Prodigy Photography';
+
+    // Append watermark to popup content if it's not already there
+    const popupContent = document.querySelector('.popup-content');
+    if (!document.getElementById('watermark')) {
+        popupContent.appendChild(watermark);
+    }
+
+    // Adjust image dimensions after the image has fully loaded
+    popupImage.onload = function() {
+        const maxWidth = window.innerWidth * 0.9; // Set max width as 90% of viewport width
+        const maxHeight = window.innerHeight * 0.9; // Set max height as 90% of viewport height
+
+        // Calculate the natural aspect ratio of the image
+        const aspectRatio = popupImage.naturalWidth / popupImage.naturalHeight;
+
+        if (popupImage.naturalWidth > maxWidth || popupImage.naturalHeight > maxHeight) {
+            // If the image is too wide or tall, scale it down to fit within max dimensions
+            if (aspectRatio > 1) {
+                // Landscape image: constrain by width first
+                popupImage.style.width = `${maxWidth}px`;
+                popupImage.style.height = `${maxWidth / aspectRatio}px`;
+
+                // If height still exceeds maxHeight after width adjustment, adjust height
+                if (popupImage.offsetHeight > maxHeight) {
+                    popupImage.style.height = `${maxHeight}px`;
+                    popupImage.style.width = `${maxHeight * aspectRatio}px`;
+                }
+            } else {
+                // Portrait or square image: constrain by height first
+                popupImage.style.height = `${maxHeight}px`;
+                popupImage.style.width = `${maxHeight * aspectRatio}px`;
+
+                // If width still exceeds maxWidth after height adjustment, adjust width
+                if (popupImage.offsetWidth > maxWidth) {
+                    popupImage.style.width = `${maxWidth}px`;
+                    popupImage.style.height = `${maxWidth / aspectRatio}px`;
+                }
+            }
+        } else {
+            // If the image fits within the max dimensions, display it in natural size
+            popupImage.style.width = `${popupImage.naturalWidth}px`;
+            popupImage.style.height = `${popupImage.naturalHeight}px`;
+        }
+    };
+
     popup.classList.add('visible');
 
     /* Disable right-click on the popup */
@@ -100,11 +155,28 @@ function openImagePopup(src) {
     const closeBtn = popup.querySelector('.close-popup-button');
     closeBtn.onclick = () => {
         popup.classList.remove('visible');
+        popupImage.src = ''; // Clear the image source after closing
     };
 }
 
-/* Toggle Cart Visibility */
 document.addEventListener('DOMContentLoaded', function () {
+    // Toggle More Menu Dropdown
+    const moreButton = document.querySelector('.more-button');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    if (moreButton && dropdownContent) {
+        moreButton.addEventListener('click', function (event) {
+            event.stopPropagation();
+            dropdownContent.classList.toggle('show');
+        });
+
+        // Close the dropdown if clicking outside of it
+        document.body.addEventListener('click', function () {
+            dropdownContent.classList.remove('show');
+        });
+    }
+
+    // Toggle Cart Visibility
     const cartButton = document.getElementById('cart-button');
     const cartElement = document.getElementById('cart');
 
@@ -163,6 +235,26 @@ function attachAddToCartListeners() {
             updateCartCount();
         });
     });
+}
+
+/* Checkout and Send Data to PHP */
+function checkout() {
+    // Send cart data to PHP backend using AJAX
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "process_cart.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify({ cart: cart, total: total }));
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Handle the response from PHP backend
+            let response = JSON.parse(xhr.responseText);
+            if (response.status === "success") {
+                window.location.href = response.redirectUrl; // Redirect to PayPal or Success Page
+            } else {
+                alert("There was an issue with your order. Please try again.");
+            }
+        }
+    };
 }
 
 /* Get Price Based on Size */
