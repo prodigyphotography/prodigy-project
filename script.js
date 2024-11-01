@@ -159,22 +159,9 @@ function openImagePopup(src) {
     };
 }
 
+/* Add Event Listeners for Page Elements */
 document.addEventListener('DOMContentLoaded', function () {
-    // Toggle More Menu Dropdown
-    const moreButton = document.querySelector('.more-button');
-    const dropdownContent = document.querySelector('.dropdown-content');
-
-    if (moreButton && dropdownContent) {
-        moreButton.addEventListener('click', function (event) {
-            event.stopPropagation();
-            dropdownContent.classList.toggle('show');
-        });
-
-        // Close the dropdown if clicking outside of it
-        document.body.addEventListener('click', function () {
-            dropdownContent.classList.remove('show');
-        });
-    }
+    generatePhotoCards();
 
     // Toggle Cart Visibility
     const cartButton = document.getElementById('cart-button');
@@ -374,6 +361,3 @@ function clearCart() {
     updateCart();
     updateCartCount();
 }
-
-/* Initialize Page */
-window.onload = generatePhotoCards;
