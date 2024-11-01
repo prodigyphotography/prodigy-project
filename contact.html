@@ -5,30 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Prodigy Photography</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            overflow-x: hidden;
+            padding: 0 20px; /* Add padding to the body to center content */
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100vw;
+            margin-left: calc(50% - 50vw); /* Ensure header extends fully across the screen */
+        }
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto; /* Center the content */
+            padding-bottom: 200px; /* Increase space between body content and footer */
+        }
+        footer {
+            padding-top: 100px; /* Increase padding to create more space between footer and body */
+            text-align: center;
+        }
+        .about-container h2 {
+            text-align: center; /* Center the heading */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Contact</h1>
-        <a href="index.html"><button id="back-home-button">Back to Home</button></a>
+        <h1>Prodigy Photography</h1>
+        <div class="header-buttons">
+            <a href="index.html" class="header-button">Home</a>
+            <a href="gallery.html" class="header-button">Gallery</a>
+            <a href="contact.html" class="header-button">Contact</a>
+        </div>
+        <button id="cart-button">Cart (<span id="cart-count">0</span>)</button>
     </header>
 
-<section class="contact-container">
-    <h2>I'd love to hear from you!</h2>
-    <p>Feel free to get in touch with me for any questions, custom orders, or collaborations.</p>
+    <section class="about-container">
+        <h2>I'd love to hear from you!</h2>
+        <p>Feel free to get in touch with me for any questions, custom orders, or collaborations.</p>
+        <p style="margin-bottom: 40px;">Email: <a href="mailto:prodigyphotography98@gmail.com">prodigyphotography98@gmail.com</a></p>
+    </section>
 
-    <p style="margin-bottom: 40px;">Email: <a href="mailto:prodigyphotography98@gmail.com">prodigyphotography98@gmail.com</a></p>
-</section>
-
-<footer>
-    <p>&copy; 2024 Prodigy Photography. All rights reserved.</p>
-</footer>
-
-
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Thank you for your message! We will get back to you shortly.');
-        });
-    </script>
+    <footer>
+        <p>&copy; 2024 Prodigy Photography. All rights reserved.</p>
+        <p><a href="terms.html">Terms and Conditions</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
 </body>
 </html>
