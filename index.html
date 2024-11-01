@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - Prodigy Photography</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            overflow-x: hidden;
+            padding: 0 20px; /* Add padding to the body to center content */
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100vw;
+            margin-left: calc(50% - 50vw); /* Ensure header extends fully across the screen */
+        }
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto; /* Center the content */
+            padding-bottom: 200px; /* Increase space between body content and footer */
+        }
+        footer {
+            padding-top: 100px; /* Increase padding to create more space between footer and body */
+            text-align: center;
+        }
+        .about-container h2 {
+            text-align: center; /* Center the heading */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,13 +42,6 @@
             <a href="index.html" class="header-button">Home</a>
             <a href="gallery.html" class="header-button">Gallery</a>
             <a href="contact.html" class="header-button">Contact</a>
-            <div class="more-menu">
-                <button class="more-button">More</button>
-                <div class="dropdown-content">
-                    <a href="terms.html">Terms and Conditions</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                </div>
-            </div>
         </div>
         <button id="cart-button">Cart (<span id="cart-count">0</span>)</button>
     </header>
@@ -33,6 +55,7 @@
 
     <footer>
         <p>&copy; 2024 Prodigy Photography. All rights reserved.</p>
+        <p><a href="terms.html">Terms and Conditions</a> | <a href="privacy.html">Privacy Policy</a></p>
     </footer>
 </body>
 </html>
