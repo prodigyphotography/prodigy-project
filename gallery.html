@@ -13,18 +13,13 @@
             <a href="index.html" class="header-button">Home</a>
             <a href="gallery.html" class="header-button">Gallery</a>
             <a href="contact.html" class="header-button">Contact</a>
-            <div class="more-menu">
-                <button class="more-button">More</button>
-                <div class="dropdown-content">
-                    <a href="terms.html">Terms and Conditions</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                </div>
-            </div>
         </div>
         <button id="cart-button">Cart (<span id="cart-count">0</span>)</button>
     </header>
 
-    <section class="gallery" id="gallery"></section>
+    <section class="gallery-container">
+        <div class="gallery" id="gallery"></div>
+    </section>
 
     <div id="cart" class="cart">
         <h2>Your Cart</h2>
@@ -32,17 +27,21 @@
         <div id="paypal-button-container"></div>
     </div>
 
-<!-- Image Popup -->
-<div id="image-popup" class="image-popup">
-    <div class="popup-content">
-        <img src="" alt="Popup Image" id="popup-image">
-        <div id="watermark" class="watermark">Prodigy Photography</div>
-        <button class="close-popup-button">&times;</button>
+    <!-- Image Popup -->
+    <div id="image-popup" class="image-popup">
+        <div class="popup-content">
+            <img src="" alt="Popup Image" id="popup-image">
+            <div id="watermark" class="watermark">Prodigy Photography</div>
+            <button class="close-popup-button">&times;</button>
+        </div>
     </div>
-</div>
-<div id="paypal-button-container"></div>
-    <script src="script.js"></script>
-    <!-- Load PayPal SDK AFTER your script.js -->
+
+    <footer>
+        <p>&copy; 2024 Prodigy Photography. All rights reserved.</p>
+        <p><a href="terms.html">Terms and Conditions</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script src="./script.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AcRjp8PG8KLQ3WoQuk07s5aKBypyNX9snb3W5dGlBbtGpM5taKsQrYgw2J9t8vK1IN1kyXA37qBSEhnR"></script>
 </body>
 </html>
