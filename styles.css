@@ -181,6 +181,12 @@ header {
     transform: scale(1.05);
 }
 
+/* Dropdown Containers within Photo Cards */
+.dropdown-container {
+    width: 100%; /* Ensure dropdown container does not extend beyond photo card */
+    box-sizing: border-box;
+}
+
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
     header {
@@ -191,8 +197,8 @@ header {
 
     .header-buttons {
         display: flex;
-        justify-content: space-between;
-        padding: 0 20px; /* Add padding on sides for spacing */
+        justify-content: center; /* Center the buttons horizontally */
+        gap: 15px;
     }
 
     #cart-button {
@@ -219,8 +225,12 @@ header {
     }
 
     .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* Ensure two columns on small screens for better layout */
         gap: 10px;
+    }
+
+    .dropdown-container {
+        width: 100%; /* Ensure dropdown fits within the container */
     }
 
     .thumbnail {
