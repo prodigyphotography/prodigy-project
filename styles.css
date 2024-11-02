@@ -18,6 +18,40 @@ header {
     position: relative; /* Ensure header doesn't affect fixed elements like the cart button */
 }
 
+/* General Heading Styling */
+h1 {
+    font-size: 36px; /* Consistent heading size for all pages */
+    text-align: center; /* Ensure the heading is centered */
+    margin: 20px 0; /* Add consistent margin for spacing */
+}
+
+h2 {
+    font-size: 24px; /* Ensure h2 headings are consistent */
+    text-align: center; /* Ensure all h2 headings are centered */
+    margin: 15px 0; /* Add margin for visual spacing */
+}
+
+/* Responsive Headings for Mobile Devices */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px; /* Reduce size for smaller screens to maintain readability */
+    }
+
+    h2 {
+        font-size: 20px; /* Reduce size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px; /* Further reduce size for very small screens */
+    }
+
+    h2 {
+        font-size: 18px; /* Match the size for very small screens */
+    }
+}
+
 /* Header Buttons (Gallery, Contact, and More) */
 .header-buttons {
     margin-top: 15px;
