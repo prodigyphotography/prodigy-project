@@ -66,7 +66,8 @@ header {
     min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    right: 0; /* Align the dropdown to the right edge of the "More" button */
+    right: 0;
+    left: auto; /* Prevent overflow by allowing dropdown to adjust to fit within screen boundaries */
 }
 
 .dropdown-content.show {
