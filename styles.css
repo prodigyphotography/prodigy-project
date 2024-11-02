@@ -1,12 +1,11 @@
 /* General Styles */
-body {
+html, body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    overflow-x: hidden;
-    padding: 0;
-    box-sizing: border-box; /* Ensure padding and borders are included in width/height calculations */
-    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding: 0; /* Remove side padding to prevent extra space */
+    box-sizing: border-box; /* Include padding and border in the element’s total width and height */
 }
 
 /* Header Styling */
@@ -16,9 +15,7 @@ header {
     color: white;
     padding: 20px;
     font-size: 24px;
-    position: relative;
-    box-sizing: border-box; /* Ensure borders are included in calculations */
-    width: 100%;
+    position: relative; /* Ensure header doesn't affect fixed elements like the cart button */
 }
 
 /* Header Buttons (Gallery, Contact, and More) */
@@ -27,11 +24,8 @@ header {
     display: flex;
     justify-content: center;
     gap: 15px;
-    box-sizing: border-box; /* Ensure padding and borders are included in width calculations */
-    width: 100%;
 }
 
-/* Header Button Styling */
 .header-button {
     background-color: #444;
     color: white;
@@ -39,11 +33,56 @@ header {
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s;
-    box-sizing: border-box; /* Ensure padding is included in width calculations */
 }
 
 .header-button:hover {
     background-color: #666;
+}
+
+/* More Menu Styling */
+.more-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.more-button {
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.more-button:hover {
+    background-color: #666;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0; /* Align the dropdown to the right edge of the "More" button */
+}
+
+.dropdown-content.show {
+    display: block; /* Show the dropdown when the "show" class is added */
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
 }
 
 /* Cart Button */
@@ -55,32 +94,30 @@ header {
     color: white;
     border: none;
     padding: 5px 10px;
-    border-radius: 0;
+    border-radius: 0; /* Remove rounded edges for a cleaner corner fit */
     cursor: pointer;
     transition: background-color 0.3s;
-    z-index: 1003;
-    margin: 0;
-    box-sizing: border-box; /* Ensure padding is included */
+    z-index: 1003; /* Ensure it stays above other elements */
+    margin: 0; /* Remove any default margins */
 }
 
 #cart-button:hover {
     background-color: #555;
 }
 
-/* Gallery Layout */
+/* Gallery Layout - Responsive Columns */
 .gallery-container {
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 10px; /* Add padding on both left and right to ensure it's not hard up against the edges */
     width: 100%;
     box-sizing: border-box;
 }
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensure flexible columns */
     gap: 20px;
     padding: 10px;
-    width: 100%;
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box; /* Include padding and border in the element’s total width and height */
@@ -93,9 +130,10 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
-    width: 100%;
+    width: calc(100% - 20px); /* Adjust width to account for padding/gap */
     transition: transform 0.2s ease-in-out;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding is included in width calculations */
+    margin: 0; /* Remove auto margin to ensure it uses the full space available */
 }
 
 .photo-card img {
@@ -120,51 +158,224 @@ header {
     border-radius: 8px;
 }
 
-/* Optional Hover Effect */
+/* Optional: Add a hover effect to emphasize the thumbnail */
 .image-overlay:hover img {
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
 }
 
-/* Footer */
-footer {
-    padding-top: 100px;
-    text-align: center;
+/* Thumbnail Images */
+.thumbnail {
     width: 100%;
-    box-sizing: border-box;
+    height: auto; /* Allow the height to adjust automatically */
+    max-height: 180px; /* Maximum height to keep thumbnails from getting too large */
+    object-fit: contain; /* Ensure the entire photo is visible without cropping */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 15px;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
 }
 
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
+    header {
+        text-align: center;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .header-buttons {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px; /* Add padding on sides for spacing */
+    }
+
     #cart-button {
+        position: fixed;
         top: 10px;
         right: 10px;
         padding: 8px 12px;
         font-size: 16px;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 15px;
-        padding: 10px;
+        z-index: 1004; /* Ensure it stays above other elements */
     }
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 15px;
+        font-size: 20px;
+    }
+
     #cart-button {
         top: 0;
         right: 0;
         padding: 3px 6px;
-        font-size: 12px;
-    }
-
-    header {
-        padding: 15px;
-        font-size: 20px;
+        font-size: 14px;
     }
 
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         gap: 10px;
     }
+
+    .thumbnail {
+        height: 120px;
+    }
+}
+
+/* Cart Popup Styling */
+#cart {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    width: 90%;
+    max-width: 400px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1003;
+    max-height: 80vh; /* Limit height to make space for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* Cart Visibility Toggle */
+#cart.visible {
+    display: block;
+}
+
+/* Cart Items Styling */
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    gap: 10px; /* Add spacing between elements */
+}
+
+/* Cart Item Controls Styling */
+.cart-item-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* Quantity Input Styling */
+.quantity-input {
+    width: 60px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+/* Item Total Price Styling */
+.item-total-price {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Remove Item Button */
+.remove-item-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.remove-item-button:hover {
+    background-color: #cc0000;
+}
+
+/* PayPal Button Container */
+#paypal-button-container {
+    margin-top: 20px;
+}
+
+/* Image Popup */
+.image-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1003;
+    overflow: hidden; /* Prevents any content from overflowing */
+}
+
+.image-popup.visible {
+    display: flex;
+}
+
+.popup-content {
+    position: relative;
+    max-width: 90vw; /* Set maximum width as 90% of viewport width */
+    max-height: 90vh; /* Set maximum height as 90% of viewport height */
+}
+
+.popup-content img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    object-fit: contain; /* Ensures image maintains aspect ratio while fitting the container */
+}
+
+/* Watermark Styling */
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.8); /* Brighter text for more visibility */
+    background-color: rgba(0, 0, 0, 0.35); /* Slightly transparent dark background for contrast */
+    padding: 40px 80px; /* Significantly increased padding to cover more of the image */
+    border-radius: 10px;
+    font-size: 90px; /* Much larger font size */
+    font-weight: bold;
+    z-index: 1004; /* Ensure it's above the image */
+    pointer-events: none; /* Make sure the watermark doesn't interfere with clicking */
+    text-align: center;
+}
+
+/* Close Popup Button */
+.close-popup-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+.close-popup-button:hover {
+    background-color: darkred;
 }
