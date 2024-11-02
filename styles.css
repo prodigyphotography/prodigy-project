@@ -181,22 +181,23 @@ header {
     transform: scale(1.05);
 }
 
-/* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
-    #cart-button {
-        top: 0;
-        right: 0;
-        padding: 4px 8px; /* Reduce padding for smaller devices */
-        font-size: 14px;
+    header {
+        text-align: center;
+        padding: 15px;
+        font-size: 18px;
     }
-}
 
-@media (max-width: 480px) {
+    .header-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center; /* This helps to keep the buttons centered */
+    }
+
     #cart-button {
-        top: 0;
-        right: 0;
-        padding: 3px 6px; /* Further reduce padding for very small devices */
-        font-size: 12px;
+        margin: 10px auto;
+        text-align: center;
     }
 }
 
@@ -481,10 +482,11 @@ header {
 /* Gallery Styling */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensure flexible columns */
+    gap: 20px; /* Ensure equal spacing between containers */
+    padding: 10px 20px; /* Add padding for better space usage */
     width: 100%;
+    max-width: 1400px; /* Limit width for centered layout */
     margin: 0 auto;
 }
 
