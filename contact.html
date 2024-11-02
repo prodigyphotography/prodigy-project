@@ -26,39 +26,46 @@
             margin: 0 auto; /* Center the content */
             padding-bottom: 50px; /* Reduce space between body content and footer */
         }
-        .contact-form {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .contact-form button {
-            background-color: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .contact-form button:hover {
-            background-color: #555;
-        }
         footer {
-            padding-top: 100px; /* Increase padding to create more space between footer and body */
+            padding-top: 50px; /* Reduce padding to create less space between footer and body */
             text-align: center;
         }
         .about-container h2 {
             text-align: center; /* Center the heading */
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+        }
+        .contact-form button {
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+        }
+        .contact-form button:hover {
+            background-color: #666;
         }
     </style>
 </head>
@@ -77,20 +84,18 @@
         <h2>I'd love to hear from you!</h2>
         <p>Feel free to get in touch with me for any questions, custom orders, or collaborations.</p>
         
-        <div class="contact-form">
-            <form action="https://formspree.io/f/your-form-id" method="POST">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required>
-                
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your email" required>
-                
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
-                
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
+        <form class="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
     </section>
 
     <footer>
