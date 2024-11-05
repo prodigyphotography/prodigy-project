@@ -295,6 +295,19 @@ h2 {
         padding: 8px; /* Adjust padding for smaller screens */
     }
 }
+@media (max-width: 768px) {
+    .watermark {
+        padding: 20px 40px; /* Adjust padding for smaller screens */
+        font-size: 50px; /* Reduce font size for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .watermark {
+        padding: 15px 30px; /* Further reduce padding for very small screens */
+        font-size: 40px; /* Further reduce font size for small mobile screens */
+    }
+}
 
 /* Cart Popup Styling */
 #cart {
