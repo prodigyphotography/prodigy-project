@@ -436,3 +436,129 @@ img.thumbnail {}
 #paypal-button-container {
     margin-top: 20px;
 }
+/* Gallery Layout - Responsive Columns */
+.gallery-container {
+    margin: 0 auto;
+    padding: 0 10px; /* Add padding on both left and right to ensure it's not hard up against the edges */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensure flexible columns */
+    gap: 20px;
+    padding: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box; /* Include padding and border in the element’s total width and height */
+}
+
+/* Photo Card Styling */
+.photo-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: border-box; /* Ensures padding is included in width calculations */
+    margin: 0; /* Remove auto margin to ensure it uses the full space available */
+    overflow: hidden; /* Ensure dropdowns do not overflow */
+}
+
+.photo-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.photo-card:hover {
+    transform: scale(1.02);
+}
+
+/* Dropdown Container Styling */
+.dropdown-container {
+    width: 100%;
+    max-width: 100%; /* Ensure dropdowns do not exceed container width */
+    overflow: hidden; /* Prevent dropdowns from extending beyond the container */
+}
+
+.dropdown-container select {
+    width: 100%;
+    max-width: 100%; /* Ensure dropdowns fit within the container */
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Add to Cart Button Styling */
+.add-to-cart-button {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.image-popup.visible {
+    display: flex;
+}
+.image-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1003;
+    overflow: hidden;
+}
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.35);
+    padding: 40px 80px;
+    border-radius: 10px;
+    font-size: 90px;
+    font-weight: bold;
+    z-index: 1004;
+    pointer-events: none;
+    text-align: center;
+}
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    header {
+        text-align: center;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .header-buttons {
+        display: flex;
+        justify-content: center; /* Fix buttons to be centered */
+        padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+
+    #cart-button {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 16px;
+        z-index: 1004; /* Ensure it stays above other elements */
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* Show two images side by side on smaller screens */
+        gap: 15px;
+        padding: 10px;
+    }
+}
